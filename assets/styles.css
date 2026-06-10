@@ -634,9 +634,13 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 }
 @media (min-width: 861px) { .nav-scrim { display: none; } }
 
+@media (max-width: 860px) {
+  .hero { padding-bottom: clamp(100px, 14vw, 140px); }
+}
 @media (max-width: 520px) {
   .hero__cta { flex-direction: column; align-items: stretch; }
   .hero__cta .btn { justify-content: center; }
+  .hero { padding-bottom: 120px; }
 }
 
 /* =========================================================
