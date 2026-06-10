@@ -316,8 +316,8 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   color: var(--txt-dim); text-transform: uppercase; display: flex; flex-direction: column;
   align-items: center; gap: 8px;
 }
-.hero__cue .dot { width: 2px; height: 34px; background: linear-gradient(var(--bolt), transparent); animation: cue 1.8s var(--ease) infinite; }
-@keyframes cue { 0%,100% { opacity: .3; transform: scaleY(.6); } 50% { opacity: 1; transform: scaleY(1); } }
+.hero__cue .dot { width: 2px; height: 34px; background: linear-gradient(var(--bolt), transparent); animation: cue 1.8s var(--ease) infinite; transform-origin: top; }
+@keyframes cue { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(34px); } }
 
 /* =========================================================
    USŁUGI
@@ -820,29 +820,12 @@ body.menu-open { overflow: hidden; }
 /* =========================================================
    Atuty — ikony skaczą (wyraźna animacja)
    ========================================================= */
-@keyframes icon-bob {
-  0%, 55%, 100% { transform: translateY(0) rotate(0deg); }
-  30%            { transform: translateY(-14px) rotate(-6deg); }
-  45%            { transform: translateY(-10px) rotate(4deg); }
-}
-.feat__ico { animation: icon-bob 2.4s ease-in-out infinite; }
-.feat:nth-child(2) .feat__ico { animation-delay: .6s; }
-.feat:nth-child(3) .feat__ico { animation-delay: 1.2s; }
-.feat:nth-child(4) .feat__ico { animation-delay: 1.8s; }
+.feat__ico { animation: none; }
 
 /* =========================================================
    Hero — tagi pływają (ciągła animacja widoczna od razu)
    ========================================================= */
-@keyframes tag-float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-5px); }
-}
-.hero__strip .tag { animation: tag-float 3s ease-in-out infinite; }
-.hero__strip .tag:nth-child(2) { animation-delay: .5s; }
-.hero__strip .tag:nth-child(3) { animation-delay: 1s; }
-.hero__strip .tag:nth-child(4) { animation-delay: 1.5s; }
-.hero__strip .tag:nth-child(5) { animation-delay: 2s; }
-.hero__strip .tag:nth-child(6) { animation-delay: 2.5s; }
+.hero__strip .tag { animation: none; }
 
 /* =========================================================
    Logo — pulsujący blask przy załadowaniu (3 razy)
