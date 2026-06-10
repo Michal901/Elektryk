@@ -316,8 +316,13 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   color: var(--txt-dim); text-transform: uppercase; display: flex; flex-direction: column;
   align-items: center; gap: 8px;
 }
-.hero__cue .dot { width: 2px; height: 34px; background: linear-gradient(var(--bolt), transparent); animation: cue 1.8s var(--ease) infinite; transform-origin: top; }
-@keyframes cue { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(34px); } }
+.hero__cue .dot { width: 2px; height: 34px; background: linear-gradient(var(--bolt), transparent); animation: cue 1.4s ease-in-out infinite; }
+@keyframes cue {
+  0%   { clip-path: inset(0% 0 80% 0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: .8; }
+  100% { clip-path: inset(80% 0 0% 0); opacity: 0; }
+}
 
 /* =========================================================
    USŁUGI

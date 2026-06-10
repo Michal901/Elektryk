@@ -117,27 +117,20 @@
         return;
       }
 
-      // Budujemy wiadomość e-mail (działający mailto jako fallback bez backendu)
       const data = new FormData(form);
-      const subj = encodeURIComponent(
-        "Zapytanie ze strony — " + (data.get("usluga") || "wycena")
-      );
-      const body = encodeURIComponent(
-        `Imię i nazwisko: ${data.get("imie")}\n` +
-          `Telefon: ${data.get("telefon")}\n` +
-          `E-mail: ${data.get("email") || "-"}\n` +
-          `Usługa: ${data.get("usluga")}\n\n` +
-          `Wiadomość:\n${data.get("wiadomosc")}`
-      );
 
-      // Pokaż ekran sukcesu
-      form.querySelectorAll(".form__body").forEach((n) => n.classList.add("is-hidden"));
-      success.classList.add("show");
-
-      // Otwórz klienta poczty z gotową treścią
-      setTimeout(() => {
-        window.location.href = `mailto:darekk4@tlen.pl?subject=${subj}&body=${body}`;
-      }, 600);
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString(),
+      })
+        .then(() => {
+          form.querySelectorAll(".form__body").forEach((n) => n.classList.add("is-hidden"));
+          success.classList.add("show");
+        })
+        .catch(() => {
+          alert("Błąd wysyłania. Spróbuj ponownie lub zadzwoń bezpośrednio.");
+        });
     });
   }
 
