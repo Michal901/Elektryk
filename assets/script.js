@@ -119,18 +119,19 @@
 
       const data = new FormData(form);
 
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data).toString(),
-      })
-        .then(() => {
-          form.querySelectorAll(".form__body").forEach((n) => n.classList.add("is-hidden"));
-          success.classList.add("show");
-        })
-        .catch(() => {
-          alert("Błąd wysyłania. Spróbuj ponownie lub zadzwoń bezpośrednio.");
-        });
+      emailjs.init("rGPYUpmvCUNeSkfCY");
+      emailjs.send("service_89ovjpm", "template_x6brlob", {
+        imie:      data.get("imie"),
+        telefon:   data.get("telefon"),
+        email:     data.get("email") || "-",
+        usluga:    data.get("usluga"),
+        wiadomosc: data.get("wiadomosc"),
+      }).then(() => {
+        form.querySelectorAll(".form__body").forEach((n) => n.classList.add("is-hidden"));
+        success.classList.add("show");
+      }).catch(() => {
+        alert("Błąd wysyłania. Spróbuj ponownie lub zadzwoń bezpośrednio.");
+      });
     });
   }
 
